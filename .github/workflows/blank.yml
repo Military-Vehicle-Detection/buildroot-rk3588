@@ -34,23 +34,23 @@ jobs:
             ls -l 
 
         - name: Configure Buildroot
-          working-directory: ./buildroot
+          working-directory: ./buildroot-rk3588/buildroot
           run: make BR2_EXTERNAL=../external rock5b_defconfig
 
         - name: Build Buildroot
-          working-directory: ./buildroot
+          working-directory: ./buildroot-rk3588/buildroot
           run: make -j32
 
         - name: Run legal-info
-          working-directory: ./buildroot
+          working-directory: ./buildroot-rk3588/buildroot
           run: make legal-info
 
         - name: Create SDK 
-          working-directory: ./buildroot
+          working-directory: ./buildroot-rk3588/buildroot
           run: make sdk
 
         - name: Copy artifacts
-          working-directory: ./buildroot
+          working-directory: ./buildroot-rk3588/buildroot
           run: | 
             mkdir ~/artifacts
             cp -v output/images/sdcard.img ~/artifacts
