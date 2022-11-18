@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          # token: ${{ secrets.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 }}
-          # submodules: true
+          submodules: recursive
+          token: ${{ secrets.ACCESS_TOKEN }}
           path: buildroot-rk3588
           
       - name: Install depends
