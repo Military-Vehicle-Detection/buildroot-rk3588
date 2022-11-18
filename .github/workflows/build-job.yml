@@ -8,7 +8,7 @@ jobs:
   build-buildroot:
     runs-on: ubuntu-20.04
     steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v2
           with:
             path: buildroot-rk3588
       
@@ -58,13 +58,13 @@ jobs:
             cp -v output/images/*sdk*.tar.gz ~/sdk
 
         - name: Upload Artifact GitHub Action
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v2
           with: 
             name: download-artifacts
             path: ~/artifacts
 
         - name: Upload SDK GitHub Action
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v2
           with: 
             name: download-sdk
             path: ~/sdk
