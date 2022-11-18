@@ -60,7 +60,7 @@ jobs:
         - name: Upload Artifact GitHub Action
           uses: actions/upload-artifact@v3
           with: 
-            name: download-artifacts
+            name: download-image
             path: ~/artifacts
 
         - name: Upload SDK GitHub Action
