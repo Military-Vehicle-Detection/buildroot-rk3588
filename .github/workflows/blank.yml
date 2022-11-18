@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          token: ${{ secrets.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 }}
           path: buildroot-rk3588
           
       - name: Install depends
