@@ -23,10 +23,10 @@ jobs:
             hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
             ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
 
-        - name: Install depends
-          run: |
-            sudo apt update
-            sudo apt-get install -y git git-lfs expect-dev debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
+        #- name: Install depends
+        #  run: |
+        #    sudo apt update
+        #    sudo apt-get install -y git git-lfs expect-dev debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
 
         - name: Submodules init
           working-directory: ./buildroot-rk3588
