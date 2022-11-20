@@ -41,6 +41,7 @@ jobs:
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
+          if: ${{ failure() }}
           # WARNING: Uncomment one!
           
           # NOTE: for full print build log: 'make' command
@@ -66,6 +67,20 @@ jobs:
             cp -v output/images/*sdk*.tar.gz ~/sdk
             mkdir ~/buildlog
             cp -v br.log ~/buildlog
+            
+        - name: The step has failed
+          working-directory: ./buildroot-rk3588/buildroot
+          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+          run: | 
+            mkdir ~/buildlog
+            cp -v br.log ~/buildlog
+            
+        - name: Upload build log from GitHub Action
+          uses: actions/upload-artifact@v3
+          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+          with: 
+            name: build-log
+            path: ~/buildlog
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
