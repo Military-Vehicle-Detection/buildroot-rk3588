@@ -121,10 +121,10 @@ An example of how you can integrate the SDK into the CLion development environme
 
 5. Change cmake settings: system compiller to cross-compiler 
 ![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/4.png)
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/5.png)
 
 6. Build hello-world application 
 
-![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/5.png)
 
 ## How to debug app via gdb and ssh
 
@@ -156,8 +156,8 @@ After you connect to the console target via ssh or UART and you can run your app
 ![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/10.png)
 
 
+TODO: need to update for QT creator and VSCode
 
-TODO: need to update
 
 ## How to build C/C++ hello-world app for target
 TODO: need to update
