@@ -22,7 +22,9 @@ jobs:
             ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
 
         - name: Install depends
-          run: sudo apt-get install -y debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
+          run: |
+            sudo apt update
+            sudo apt-get install -y expect-dev debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
 
         - name: Submodules init
           working-directory: ./buildroot-rk3588
@@ -39,7 +41,8 @@ jobs:
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
-          run: make -j32
+          # run: make -j32
+          run: utils/brmake
 
         - name: Run legal-info
           working-directory: ./buildroot-rk3588/buildroot
