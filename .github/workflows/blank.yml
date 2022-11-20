@@ -14,14 +14,14 @@ jobs:
           with:
             path: buildroot-rk3588
       
-        - name: Write SSH keys and pull submodules
-          working-directory: ./buildroot-rk3588
-          run: |
-            install -m 600 -D /dev/null ~/.ssh/id_rsa
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            host='github.com'
-            hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
-            ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
+#         - name: Write SSH keys and pull submodules
+#           working-directory: ./buildroot-rk3588
+#           run: |
+#             install -m 600 -D /dev/null ~/.ssh/id_rsa
+#             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+#             host='github.com'
+#             hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
+#             ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
 
         #- name: Install depends
         #  run: |
