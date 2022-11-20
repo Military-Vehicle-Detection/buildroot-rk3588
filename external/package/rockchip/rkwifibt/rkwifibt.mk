@@ -12,11 +12,11 @@ RKWIFIBT_LICENSE_FILES = LICENSE
 
 RKWIFIBT_DEPENDENCIES = wpa_supplicant
 
-GCCVER = $(TOPDIR)/../prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf
+# GCCVER = $(TOPDIR)/../prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf
 GCC10 = $(shell if [ -d $(GCCVER) ]; then echo "GCC10"; fi)
 ifneq ($(findstring $(GCC10), "GCC10"),)
-CROSS_COMPILE32=$(TOPDIR)/../prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-linux-gnueabihf-
-CROSS_COMPILE64=$(TOPDIR)/../prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+# CROSS_COMPILE32=$(TOPDIR)/../prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-linux-gnueabihf-
+# CROSS_COMPILE64=$(TOPDIR)/../prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
 endif
 $(info $(TOPDIR) $(GCCVER) $(GCC10) $(CROSS_COMPILE))
 
@@ -32,7 +32,7 @@ CROSS_COMPILE=$(CROSS_COMPILE32)
 RKWIFIBT_ARCH=arm
 endif
 
-BT_DRIVER_ARCH = $(shell grep -o "arm64" $(TOPDIR)/../kernel/.config)
+BT_DRIVER_ARCH = $(shell grep -o "arm64" $(BR2_EXTERNAL_RK3588_PATH)/rockchip_linux_defconfig)
 $(info $(BT_DRIVER_ARCH))
 ifneq ($(findstring arm64, $(BT_DRIVER_ARCH)),)
 BT_DRIVER_ARCH = arm64
