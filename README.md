@@ -75,6 +75,37 @@ TODO: need to update
 
 
 ## How to use SDK
+
+You can download SDK for developing SW from jobs GitHub Actions or build SDK locally:
+
+1. Download SDK from CI/CD
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/blob/bsp/doc/images/ScreenShot%202022-11-20%20%D0%B2%2014.01.39.png)
+
+2. Unpack file to local folder, example `/opt/sdk`
+
+```bash
+# NOTE: for unpack to /opt folder need root access
+cd ~/Downloads
+sudo tar -xvf aarch64-buildroot-linux-gnu_sdk-buildroot.tar.gz -C /opt
+```
+
+3. Run relocate script `relocate-sdk.sh`
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/sdk.png)
+
+4. Get SDK environment from file `environment-setup`
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/env.png)
+
+5. Check SDK environment, compiler, cflags, etc
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/gcc.png)
+
+## How to use SDK via IDE: Clion, VSCode, etc
+TODO: need to update
+
+## How to build C/C++ hello-world app for target
 TODO: need to update
 
 ## How to add new packages for build image
