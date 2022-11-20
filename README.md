@@ -38,9 +38,15 @@ git submodule update --recursive
 cd buildroot
 make BR2_EXTERNAL=../external rock5b_defconfig
 make -j8
+
+# NOTE: for minimum print log during build run brmake utility 
+utils/brmake
 ```
 
 If the build was successful, you will find `sdcard.img` in the output/image folder which is ready to be written to an EMMC or SD card
+
+### Auto build
+TODO: need to make build bash scripts and update README
 
 ### Configure buildoot
 
@@ -64,5 +70,13 @@ make -j8
 ```
 
 
-TODO: need to make full instructions: rebuild, flash image, add new package for build
+## How to flash image
+TODO: need to update
+
+
+## How to use SDK
+TODO: need to update
+
+## How to add new packages for build image
+TODO: need to update
 
