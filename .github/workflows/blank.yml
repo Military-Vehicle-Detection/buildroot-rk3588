@@ -41,14 +41,13 @@ jobs:
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
-          if: ${{ failure() }}
           # WARNING: Uncomment one!
           
           # NOTE: for full print build log: 'make' command
-          # run: make -j16
+          run: make -j16
           
           # NOTE: for minimum print log during build
-          run: utils/brmake
+          # run: utils/brmake
 
         - name: Run legal-info
           working-directory: ./buildroot-rk3588/buildroot
@@ -68,12 +67,6 @@ jobs:
             mkdir ~/buildlog
             cp -v br.log ~/buildlog
             
-        - name: The step has failed
-          working-directory: ./buildroot-rk3588/buildroot
-          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
-          run: | 
-            mkdir ~/buildlog
-            cp -v br.log ~/buildlog
             
         - name: Upload build log from GitHub Action
           uses: actions/upload-artifact@v3
@@ -94,8 +87,8 @@ jobs:
             name: sdk
             path: ~/sdk
             
-        - name: Upload build log from GitHub Action
-          uses: actions/upload-artifact@v3
-          with: 
-            name: build-log
-            path: ~/buildlog
+#         - name: Upload build log from GitHub Action
+#           uses: actions/upload-artifact@v3
+#           with: 
+#             name: build-log
+#             path: ~/buildlog
