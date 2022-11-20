@@ -102,8 +102,62 @@ sudo tar -xvf aarch64-buildroot-linux-gnu_sdk-buildroot.tar.gz -C /opt
 
 ![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/gcc.png)
 
-## How to use SDK via IDE: Clion, VSCode, etc
-TODO: need to update
+## How to use SDK via IDE: Clion, VSCode, QTcreator, etc
+
+For easy coding, it's better to use IDE
+
+An example of how you can integrate the SDK into the CLion development environment
+
+1. Install IDE, you can download from https://www.jetbrains.com/clion/
+2. Create C or C++ hello-world application
+3. Go to settings tab: File->Settings
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/1.png)
+
+4. Create new settings for cross-compiler 
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/2.png)
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/3.png)
+
+5. Change cmake settings: system compiller to cross-compiler 
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/4.png)
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/5.png)
+
+6. Build hello-world application 
+
+
+## How to debug app via gdb and ssh
+
+### Clion gdb
+
+Full instructions: https://www.jetbrains.com/help/clion/remote-debug.html
+
+1. Go to build configuration and add 
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/6.png)
+
+2. Create new Debug/Run configuration, you can change debug folder, environment variable, etc. 
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/11.png)
+
+3. Create new SSH credentials for your target
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/7.png)
+
+4. Run debug button, enjoy 
+
+### Upload executions file via SSH
+
+Yuo can uoload executions file via ssh: example command `scp <path_to_file> root@192.x.x.x:<path_to_upload>`
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/9.png)
+
+After you connect to the console target via ssh or UART and you can run your application
+
+![alt text](https://github.com/Military-Vehicle-Detection/buildroot-rk3588/raw/bsp/doc/images/clion/10.png)
+
+
+TODO: need to update for QT creator and VSCode
+
 
 ## How to build C/C++ hello-world app for target
 TODO: need to update
