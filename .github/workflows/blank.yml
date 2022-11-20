@@ -36,7 +36,9 @@ jobs:
 
         - name: Configure Buildroot
           working-directory: ./buildroot-rk3588/buildroot
-          run: make BR2_EXTERNAL=../external rock5b_defconfig
+          run: |
+            make distclean
+            make BR2_EXTERNAL=../external rock5b_defconfig
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
