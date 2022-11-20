@@ -24,7 +24,7 @@ jobs:
         - name: Install depends
           run: |
             sudo apt update
-            sudo apt-get install -y expect-dev debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
+            sudo apt-get install -y git git-lfs expect-dev debianutils sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc git
 
         - name: Submodules init
           working-directory: ./buildroot-rk3588
