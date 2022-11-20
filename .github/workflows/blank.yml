@@ -41,7 +41,12 @@ jobs:
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
+          # WARNING: Uncomment one!
+          
+          # NOTE: for full print build log: 'make' command
           # run: make -j32
+          
+          # NOTE: for minimum print log during build
           run: utils/brmake
 
         - name: Run legal-info
