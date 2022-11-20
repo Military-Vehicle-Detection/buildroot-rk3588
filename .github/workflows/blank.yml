@@ -59,15 +59,23 @@ jobs:
             cp -v output/images/sdcard.img ~/artifacts
             mkdir ~/sdk
             cp -v output/images/*sdk*.tar.gz ~/sdk
+            mkdir ~/buildlog
+            cp -v br.log ~/buildlog
 
-        - name: Upload Artifact GitHub Action
+        - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
           with: 
-            name: download-image
+            name: image
             path: ~/artifacts
 
-        - name: Upload SDK GitHub Action
+        - name: Upload SDK from GitHub Action
           uses: actions/upload-artifact@v3
           with: 
-            name: download-sdk
+            name: sdk
             path: ~/sdk
+            
+        - name: Upload build log from GitHub Action
+          uses: actions/upload-artifact@v3
+          with: 
+            name: build-log
+            path: ~/buildlog
