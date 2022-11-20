@@ -66,16 +66,16 @@ jobs:
             cp -v output/images/sdcard.img ~/artifacts
             mkdir ~/sdk
             cp -v output/images/*sdk*.tar.gz ~/sdk
-            mkdir ~/buildlog
-            cp -v br.log ~/buildlog
+#            mkdir ~/buildlog
+#            cp -v br.log ~/buildlog
             
             
-        - name: Upload build log from GitHub Action
-          uses: actions/upload-artifact@v3
-          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
-          with: 
-            name: build-log
-            path: ~/buildlog
+#        - name: Upload build log from GitHub Action
+#          uses: actions/upload-artifact@v3
+#          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+#          with: 
+#            name: build-log
+#            path: ~/buildlog
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
