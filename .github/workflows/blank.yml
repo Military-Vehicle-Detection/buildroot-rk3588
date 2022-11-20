@@ -31,11 +31,8 @@ jobs:
         - name: Submodules init
           working-directory: ./buildroot-rk3588
           run: |
-            pwd
-            ls -l
             git submodule init
             git submodule update --recursive
-            ls -l 
 
         - name: Configure Buildroot
           working-directory: ./buildroot-rk3588/buildroot
@@ -62,20 +59,11 @@ jobs:
         - name: Copy artifacts
           working-directory: ./buildroot-rk3588/buildroot
           run: | 
-            mkdir ~/artifacts
+            mkdir -p ~/artifacts
             cp -v output/images/sdcard.img ~/artifacts
-            mkdir ~/sdk
+            mkdir -p ~/sdk
             cp -v output/images/*sdk*.tar.gz ~/sdk
-#            mkdir ~/buildlog
-#            cp -v br.log ~/buildlog
-            
-            
-#        - name: Upload build log from GitHub Action
-#          uses: actions/upload-artifact@v3
-#          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
-#          with: 
-#            name: build-log
-#            path: ~/buildlog
+                 
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
@@ -89,8 +77,3 @@ jobs:
             name: sdk
             path: ~/sdk
             
-#         - name: Upload build log from GitHub Action
-#           uses: actions/upload-artifact@v3
-#           with: 
-#             name: build-log
-#             path: ~/buildlog
