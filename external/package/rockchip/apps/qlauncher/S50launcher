@@ -19,7 +19,7 @@ start_qlauncher()
 {
 	# Wait for weston ready
 	[ "${QT_QPA_PLATFORM}" == wayland ] && \
-		while [ ! -e ${XDG_RUNTIME_DIR}/wayland-0 ]; do
+		while [ ! -e ${XDG_RUNTIME_DIR}/wayland-1 ]; do
 			sleep .1
 		done
 

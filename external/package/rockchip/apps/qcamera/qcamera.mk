@@ -5,7 +5,7 @@
 ################################################################################
 
 QCAMERA_VERSION = 1.0
-QCAMERA_SITE = $(TOPDIR)/../app/qcamera
+QCAMERA_SITE = $(BR2_EXTERNAL_RK3588_PATH)/app/qcamera
 QCAMERA_SITE_METHOD = local
 
 QCAMERA_LICENSE = ROCKCHIP
