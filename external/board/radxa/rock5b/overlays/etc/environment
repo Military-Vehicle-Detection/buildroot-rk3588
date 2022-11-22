@@ -1,0 +1,6 @@
+#! /bin/sh
+
+export XDG_RUNTIME_DIR=/var/run/weston
+export QT_QPA_PLATFORM=wayland
+export WAYLAND_DISPLAY=wayland-1
+

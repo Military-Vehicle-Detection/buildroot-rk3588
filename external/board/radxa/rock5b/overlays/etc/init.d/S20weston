@@ -1,0 +1,77 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides: weston
+# Required-Start: $local_fs $remote_fs
+# Required-Stop: $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO
+
+if test -e /etc/default/weston ; then
+        . /etc/default/weston
+fi
+
+killproc() {
+        pid=`/bin/pidof $1`
+        [ "$pid" != "" ] && kill $pid
+}
+
+read CMDLINE < /proc/cmdline
+for x in $CMDLINE; do
+        case $x in
+        weston=false)
+		echo "Weston disabled"
+		exit 0;
+                ;;
+        esac
+done
+
+case "$1" in
+  start)
+
+        #. /etc/profile
+	export LANG=en_US.UTF-8
+	export XDG_RUNTIME_DIR=/var/run/weston
+	mkdir -p /var/run/weston
+	chmod -R 0700 /var/run/weston
+	mkdir --parents $XDG_RUNTIME_DIR
+	
+
+        weston --tty=2 --log=/tmp/weston.log --debug --idle-time=0&
+        
+  ;;
+
+  stop)
+        echo "Stopping Weston"
+        killproc weston
+  ;;
+
+  restart)
+	$0 stop
+        sleep 1
+        $0 start
+  ;;
+  
+  remote)
+  	$0 stop
+  	sleep 1
+  	
+  	export LANG=en_US.UTF-8
+	export XDG_RUNTIME_DIR=/var/run/weston
+	mkdir -p /var/run/weston
+	chmod -R 0700 /var/run/weston
+	mkdir --parents $XDG_RUNTIME_DIR
+  	
+  	weston  --backend=rdp-backend.so --rdp-tls-cert=/etc/freerdp/keys/server.crt --rdp-tls-key=/etc/freerdp/keys/server.key --width=1920 --height=1080 --log=/tmp/weston.log --debug --idle-time=0&
+  	
+  ;;	
+
+  *)
+        echo "usage: $0 { start | stop | restart | remote}"
+  ;;
+esac
+
+exit 0
+
+
