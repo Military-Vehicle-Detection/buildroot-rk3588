@@ -104,3 +104,23 @@ menu "Rockchip Qt demos"
 endmenu
 
 endif
+
+menuconfig BR2_PACKAGE_MILITARY
+	bool "Military application"
+
+if BR2_PACKAGE_MILITARY	
+
+menu "Test packages"	
+	source "$BR2_EXTERNAL_RK3588_PATH/package/vision_cli/Config.in"
+endmenu
+
+menu "Debug packages"	
+# add source here 
+
+endmenu
+
+menu "Relese packages"	
+# add source here 
+
+endmenu
+endif

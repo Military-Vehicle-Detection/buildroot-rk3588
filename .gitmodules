@@ -16,3 +16,6 @@
 [submodule "external/buildroot.dl"]
 	path = external/buildroot.dl
 	url = git@github.com:Military-Vehicle-Detection/buildroot.dl.git
+[submodule "external/app/vision_console"]
+	path = external/app/vision_console
+	url = git@github.com:Military-Vehicle-Detection/vision_console.git

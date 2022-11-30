@@ -1,0 +1,7 @@
+config BR2_PACKAGE_VISION_CLI
+	bool "vision_cli"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_OPENCV4
+	help
+	  Test app for testing and debugging neural network using Rockchip NPU
+	  
