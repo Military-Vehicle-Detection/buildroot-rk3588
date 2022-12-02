@@ -5,16 +5,6 @@ name: Release
 # Triggers the workflow on merge pull request events
 on: 
   workflow_dispatch:
-    # inputs:
-    # logLevel:
-    #   description: 'Run tests with log level'
-    #   required: true
-    #   default: 'WARN'
-    #   type: choice
-    #   options:
-    #     - WARN
-    #     - INFO
-    #     - DEBUG
   pull_request:
     branches: [master]
     types: [closed]
