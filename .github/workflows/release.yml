@@ -1,17 +1,37 @@
-# Build the Buildroot and make SDK
+# Make a release for the Buildroot and make SDK
 
-name: build
+name: Release
 
-# Triggers the workflow on push or pull request events
+# Triggers the workflow on merge pull request events
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+    # inputs:
+    # logLevel:
+    #   description: 'Run tests with log level'
+    #   required: true
+    #   default: 'WARN'
+    #   type: choice
+    #   options:
+    #     - WARN
+    #     - INFO
+    #     - DEBUG
   pull_request:
     branches: [master]
     types: [closed]
 jobs:
   release:
     if: github.event.pull_request.merged == true
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo The PR was merge
+      - name: Create Release
+        # id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref }}
+          body: ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            README.md
