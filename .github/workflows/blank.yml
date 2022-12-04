@@ -27,6 +27,7 @@ jobs:
     steps:
         - uses: actions/checkout@v3
           with:
+            fetch-depth: 0
             path: buildroot-rk3588
       
         - name: Write SSH keys and pull submodules
