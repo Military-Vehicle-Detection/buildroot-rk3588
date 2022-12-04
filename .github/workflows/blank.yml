@@ -3,7 +3,22 @@
 name: build
 
 # Triggers the workflow on push or pull request events
-on: [ workflow_dispatch, pull_request ]
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Make a release'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - false
+          - true
+  pull_request:
+  
+env:
+  isRelease: ${{ github.event.inputs.release == 'true' || (github.event.pull_request.merged == true && github.event.pull_request.state == 'closed' && github.event.pull_request.base.ref == 'main') }}
+
 jobs:
   build-buildroot:
     # runs-on: ubuntu-20.04
@@ -79,3 +94,33 @@ jobs:
             name: sdk
             path: ~/sdk
             
+        - name: Application Version
+          if: ${{ env.isRelease == 'true' }}
+          id: version
+          uses: paulhatch/semantic-version@v5.0.0-beta
+          with:
+            tag_prefix: ""
+            version_format: "${major}.${minor}.${patch}"
+            search_commit_body: true
+            bump_each_commit: false
+
+        - name: Merge message
+          if: ${{ env.isRelease == 'true' }}
+          id: merge-message
+          run: |
+            git log --format=%B -n 1 ${{github.event.pull_request.merge_commit_sha}} > __last.commit.message
+
+        - name: Create Release
+          if: ${{ env.isRelease == 'true' }}
+          id: create_release
+          uses: softprops/action-gh-release@v1
+          with:
+            name: Release ${{ github.ref }}
+            body_path: __last.commit.message
+            draft: false
+            prerelease: false
+            generate_release_notes: true
+            tag_name: ${{ steps.version.outputs.version_tag }}
+            files: |
+              output/images/sdcard.img
+              output/images/*sdk*.tar.gz
