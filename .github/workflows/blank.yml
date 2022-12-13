@@ -61,7 +61,7 @@ jobs:
           # WARNING: Uncomment one!
           
           # NOTE: for full print build log: 'make' command
-          run: make -j16
+          run: make -j8
           
           # NOTE: for minimum print log during build
           # run: utils/brmake
