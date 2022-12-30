@@ -1,3 +1,7 @@
+echo "set power delivery"
+charge
+charge_pd
+
 echo "loading boot vars"
 setenv load_addr $ramdisk_addr_r
 setenv devnum 1
