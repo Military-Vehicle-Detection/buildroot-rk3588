@@ -48,7 +48,7 @@ jobs:
           working-directory: ./buildroot-rk3588
           run: |
             git submodule init
-            # git submodule update --recursive
+            git submodule sync
             git submodule update --recursive --remote
 
         - name: Configure Buildroot
@@ -96,7 +96,7 @@ jobs:
           if: always()
           with:
             name: build-log
-            patch: ~/build-log
+            patch: ~/build-log/br.log
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
