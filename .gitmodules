@@ -5,7 +5,7 @@
 [submodule "external/kernel"]
 	path = external/kernel
 	url = git@github.com:Military-Vehicle-Detection/kernel.git
-	branch = stable-5.10-rock5
+	branch = 5.10.66
 [submodule "external/uboot"]
 	path = external/uboot
 	url = git@github.com:Military-Vehicle-Detection/u-boot.git
