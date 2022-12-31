@@ -96,7 +96,7 @@ jobs:
           if: always()
           with:
             name: build-log
-            patch: ~/build-log/br.log
+            path: ~/build-log/br.log
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3
