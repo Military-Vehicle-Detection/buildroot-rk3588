@@ -48,23 +48,26 @@ jobs:
           working-directory: ./buildroot-rk3588
           run: |
             git submodule init
-            git submodule update --recursive
+            git submodule sync
+            git submodule update --recursive --remote
 
         - name: Configure Buildroot
           working-directory: ./buildroot-rk3588/buildroot
+          # if: always()
           run: |
             make distclean
             make BR2_EXTERNAL=../external rock5b_defconfig
+            if [ $( ls "br.log" ) ]; then rm br.log; fi
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
           # WARNING: Uncomment one!
           
           # NOTE: for full print build log: 'make' command
-          run: make -j16
+          # run: make -j16
           
           # NOTE: for minimum print log during build
-          # run: utils/brmake
+          run: utils/brmake
 
         - name: Run legal-info
           working-directory: ./buildroot-rk3588/buildroot
@@ -81,7 +84,20 @@ jobs:
             cp -v output/images/sdcard.img ~/artifacts
             mkdir -p ~/sdk
             cp -v output/images/*sdk*.tar.gz ~/sdk
-                 
+
+        - name: Copy full build log
+          working-directory: ./buildroot-rk3588/buildroot
+          if: always()
+          run: | 
+            mkdir -p ~/build-log
+            cp -v br.log ~/build-log
+
+        - name: Upload build log from Github Actions
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: build-log
+            path: ~/build-log/br.log
 
         - name: Upload image from GitHub Action
           uses: actions/upload-artifact@v3

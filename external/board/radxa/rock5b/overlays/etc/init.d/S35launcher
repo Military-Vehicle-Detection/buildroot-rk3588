@@ -18,7 +18,7 @@ case "$1" in
 		export QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-wayland}
 		export WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-1}
 
-		weston --tty=2 --idle-time=0&
+		# weston --tty=2 --idle-time=0&
 		{
 			# Wait for weston ready
 			while [ ! -e ${XDG_RUNTIME_DIR}/wayland-1 ]; do
@@ -29,7 +29,7 @@ case "$1" in
 	;;
   stop)
 		killall QLauncher
-		killall weston
+		# killall weston
 		printf "stop finished"
         ;;
   *)
