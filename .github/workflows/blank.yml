@@ -88,8 +88,8 @@ jobs:
           working-directory: ./buildroot-rk3588/buildroot
           if: always()
           run: | 
-          mkdir -p ~/build-log
-          cp -v br.log ~/build-log
+            mkdir -p ~/build-log
+            cp -v br.log ~/build-log
 
         - name: Upload build log from Github Actions
           uses: actions/upload-artifact@v3
