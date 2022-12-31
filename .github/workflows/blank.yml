@@ -57,6 +57,7 @@ jobs:
           run: |
             make distclean
             make BR2_EXTERNAL=../external rock5b_defconfig
+            if [ $( ls "br.log" ) ]; then rm br.log; fi
 
         - name: Build Buildroot
           working-directory: ./buildroot-rk3588/buildroot
@@ -66,9 +67,7 @@ jobs:
           # run: make -j16
           
           # NOTE: for minimum print log during build
-          run: |
-            if [ $( ls "br.log" ) ]; then rm br.log; fi
-            utils/brmake
+          run: utils/brmake
 
         - name: Run legal-info
           working-directory: ./buildroot-rk3588/buildroot
